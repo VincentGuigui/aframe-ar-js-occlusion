@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <a-scene embedded arjs>
+      <a-assets>
+      <!-- Shader custom pour l'occlusion -->
+      <script id="occlusion-shader" type="x-shader/x-fragment">
+        void main() {
+          gl_FragColor = vec4(0.0);  // Pas de couleur, mais écrit dans le depth buffer
+        }
+      </script>
+      <!--script id="occlusion-vertex" type="x-shader/x-vertex">
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      </script-->
+    </a-assets>
+      <!-- Lumière pour le modèle -->
+      <a-entity camera></a-entity>
+
+<a-entity geometry="primitive: plane; width: 0.5; height: 0.5"
+              position="0 0 -0.5"
+              rotation="0 0 0" 
+              scale="0.5 0.5 0.5"
+              material="shader: occlusion">
+    </a-entity>
+      <!-- Modèle 3D qui traverse l'occlusion -->
+      <a-entity
+        id="myModel"
+        gltf-model="model_tree.glb"
+        position="0 -0.1 -1"
+        scale="0.05 0.05 0.05"
+        animation="property: position; to: 0 -0.05 -0.4; dur: 3000; easing: easeOutQuad; startEvents: move"
+    >
+      </a-entity>
+    </a-scene>
+    <script>
+       AFRAME.registerShader('occlusion', {
+      schema: {},
+      
+      fragmentShader: document.getElementById('occlusion-shader').textContent
+    });
+      //vertexShader: document.getElementById('occlusion-vertex').textContent,
+      document.addEventListener("DOMContentLoaded", () => {
+        const model = document.getElementById("myModel");
+        setTimeout(() => {
+          model.emit("move");
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

@@ -8,4 +8,5 @@ Very usefull to make an object spawn through an AR marker or through the floor
 [See a live sample](https://vincentguigui.github.io/aframe-ar-js-occlusion/sample.html)
 
 ![Demo](docs/demo.gif)
-docs/demo.mp4
+
+https://vincentguigui.github.io/aframe-ar-js-occlusion/docs/demo.mp4

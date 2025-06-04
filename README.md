@@ -5,8 +5,7 @@ Here is a small sample to use [AFrame](https://aframe.io/) and [AR.js](https://g
 Very usefull to make an object spawn through an AR marker or through the floor
 
 
-[See a live sample](sample.html)
+[See a live sample](https://vincentguigui.github.io/aframe-ar-js-occlusion/sample.html)
 
 ![Demo](docs/demo.gif)
-![Demo](docs/demo.jpg)
-![Demo](docs/demo.mp4)
+docs/demo.mp4
